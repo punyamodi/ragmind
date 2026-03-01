@@ -5,13 +5,28 @@ from datetime import datetime
 from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import String, Text, DateTime, ForeignKey, Integer
+from sqlalchemy import String, Text, DateTime, ForeignKey, Integer, event
 from app.config import settings
 import os
 
 os.makedirs("./data", exist_ok=True)
 
-engine = create_async_engine(settings.sqlite_url, echo=False)
+engine = create_async_engine(
+    settings.sqlite_url,
+    echo=False,
+    connect_args={"timeout": 30, "check_same_thread": False},
+)
+
+
+@event.listens_for(engine.sync_engine, "connect")
+def _set_sqlite_pragma(dbapi_conn, _connection_record):
+    cursor = dbapi_conn.cursor()
+    cursor.execute("PRAGMA journal_mode=WAL")
+    cursor.execute("PRAGMA synchronous=NORMAL")
+    cursor.execute("PRAGMA busy_timeout=30000")
+    cursor.close()
+
+
 async_session_factory = async_sessionmaker(engine, expire_on_commit=False)
 
 

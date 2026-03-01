@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     streaming: bool = True
 
     chroma_persist_dir: str = "./data/chroma"
-    sqlite_url: str = "sqlite+aiosqlite:///./data/ragmind.db"
+    sqlite_url: str = "sqlite+aiosqlite:///./data/Engram.db"
     upload_dir: str = "./data/uploads"
 
     max_upload_size_mb: int = 50
@@ -29,7 +29,7 @@ class Settings(BaseSettings):
 
     cors_origins: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://localhost:4173"]
 
-    app_name: str = "RAGMind"
+    app_name: str = "Engram"
     app_version: str = "2.0.0"
 
     class Config:

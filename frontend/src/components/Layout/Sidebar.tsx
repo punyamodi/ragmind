@@ -32,7 +32,7 @@ export function Sidebar() {
           <div className="w-7 h-7 bg-brand-600 rounded-lg flex items-center justify-center">
             <Brain size={16} className="text-white" />
           </div>
-          <span className="font-semibold text-white text-lg">RAGMind</span>
+          <span className="font-semibold text-white text-lg">Engram</span>
         </div>
         <button onClick={handleNew} className="btn-primary w-full flex items-center justify-center gap-2 text-sm">
           <Plus size={16} />
@@ -113,7 +113,7 @@ export function Sidebar() {
       </div>
 
       <div className="p-3 border-t border-gray-800">
-        <p className="text-xs text-gray-600 text-center">RAGMind v2.0</p>
+        <p className="text-xs text-gray-600 text-center">Engram v2.0</p>
       </div>
     </aside>
   )

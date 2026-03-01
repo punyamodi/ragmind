@@ -1,8 +1,8 @@
-# RAGMind
+# Engram
 
 **An intelligent AI assistant with persistent memory and retrieval-augmented generation.**
 
-RAGMind combines a teachable AI agent with a full-stack web interface. It remembers facts from every conversation, learns from documents you provide, and retrieves relevant context automatically — growing smarter the more you use it.
+Engram combines a teachable AI agent with a full-stack web interface. It remembers facts from every conversation, learns from documents you provide, and retrieves relevant context automatically — growing smarter the more you use it.
 
 ---
 
@@ -85,8 +85,8 @@ RAGMind combines a teachable AI agent with a full-stack web interface. It rememb
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/punyamodi/ragmind.git
-cd ragmind
+git clone https://github.com/punyamodi/engram.git
+cd Engram
 ```
 
 **2. Backend setup**
@@ -174,7 +174,7 @@ The backend exposes a REST API at `/api`. Interactive docs are at [http://localh
 ## Project Structure
 
 ```
-ragmind/
+Engram/
 ├── backend/
 │   ├── app/
 │   │   ├── main.py              # FastAPI application
@@ -216,7 +216,7 @@ ragmind/
 
 ## How Teachability Works
 
-After every assistant response, RAGMind runs a background extraction step:
+After every assistant response, Engram runs a background extraction step:
 
 1. The last 10 messages are summarized into an LLM prompt asking for concrete, reusable facts.
 2. Extracted facts are embedded and stored in ChromaDB.
@@ -229,7 +229,7 @@ This creates a persistent, growing knowledge base that is personal to each insta
 
 ## Legacy
 
-The original single-file AutoGen implementation is preserved in the [`legacy/original-autogen-agent`](https://github.com/punyamodi/ragmind/tree/legacy/original-autogen-agent) branch.
+The original single-file AutoGen implementation is preserved in the [`legacy/original-autogen-agent`](https://github.com/punyamodi/engram/tree/legacy/original-autogen-agent) branch.
 
 ---
 
