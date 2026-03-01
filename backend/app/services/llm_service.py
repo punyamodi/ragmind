@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from openai import AsyncOpenAI
 from typing import AsyncIterator
 from app.config import settings
@@ -74,10 +76,11 @@ class LLMService:
 
     async def _embed_ollama(self, text: str) -> list[float]:
         import httpx
-        async with httpx.AsyncClient() as http:
+        embed_model = "nomic-embed-text" if settings.llm_provider == "ollama" else settings.ollama_model
+        async with httpx.AsyncClient(timeout=60) as http:
             response = await http.post(
                 f"{settings.ollama_base_url}/api/embeddings",
-                json={"model": settings.ollama_model, "prompt": text},
+                json={"model": embed_model, "prompt": text},
             )
             data = response.json()
             return data.get("embedding", [])

@@ -1,6 +1,9 @@
+from __future__ import annotations
+
 import os
 import uuid
 from pathlib import Path
+from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
@@ -103,7 +106,7 @@ async def ingest_url(data: URLIngestRequest, db: AsyncSession = Depends(get_db))
     )
 
 
-@router.get("", response_model=list[DocumentListItem])
+@router.get("", response_model=List[DocumentListItem])
 async def list_documents(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(DocumentRecord).order_by(DocumentRecord.created_at.desc()))
     docs = result.scalars().all()

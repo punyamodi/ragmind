@@ -1,8 +1,11 @@
+from __future__ import annotations
+
 import uuid
 from datetime import datetime
+from typing import List
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import String, Text, DateTime, ForeignKey, Float, Integer
+from sqlalchemy import String, Text, DateTime, ForeignKey, Integer
 from app.config import settings
 import os
 
@@ -23,7 +26,7 @@ class Session(Base):
     title: Mapped[str] = mapped_column(String(255), default="New Chat")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    messages: Mapped[list["Message"]] = relationship("Message", back_populates="session", cascade="all, delete-orphan")
+    messages: Mapped[List[Message]] = relationship("Message", back_populates="session", cascade="all, delete-orphan")
 
 
 class Message(Base):
@@ -35,7 +38,7 @@ class Message(Base):
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     tokens_used: Mapped[int] = mapped_column(Integer, default=0)
-    session: Mapped["Session"] = relationship("Session", back_populates="messages")
+    session: Mapped[Session] = relationship("Session", back_populates="messages")
 
 
 class DocumentRecord(Base):

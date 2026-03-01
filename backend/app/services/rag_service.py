@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from app.services.llm_service import llm_service
 from app.services.vector_store import VectorStoreService
 

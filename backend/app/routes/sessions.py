@@ -1,5 +1,8 @@
+from __future__ import annotations
+
 import uuid
 from datetime import datetime
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
@@ -25,7 +28,7 @@ async def create_session(data: SessionCreate, db: AsyncSession = Depends(get_db)
     )
 
 
-@router.get("", response_model=list[SessionResponse])
+@router.get("", response_model=List[SessionResponse])
 async def list_sessions(db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Session).order_by(Session.updated_at.desc()))
     sessions = result.scalars().all()

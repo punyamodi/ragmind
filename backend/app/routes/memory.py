@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+from typing import List
 from fastapi import APIRouter, HTTPException
 from app.models.schemas import MemoryItem, MemorySearchRequest
 from app.services.memory_service import MemoryService
@@ -10,7 +13,7 @@ def get_memory_service() -> MemoryService:
     return MemoryService(VectorStoreService.get_instance())
 
 
-@router.get("", response_model=list[MemoryItem])
+@router.get("", response_model=List[MemoryItem])
 async def list_memories():
     svc = get_memory_service()
     raw = svc.get_all()
@@ -20,7 +23,7 @@ async def list_memories():
     ]
 
 
-@router.post("/search", response_model=list[MemoryItem])
+@router.post("/search", response_model=List[MemoryItem])
 async def search_memories(data: MemorySearchRequest):
     svc = get_memory_service()
     results = await svc.search(data.query, k=data.k)

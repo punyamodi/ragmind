@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from fastapi import APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.schemas import SettingsRead, SettingsUpdate, HealthResponse

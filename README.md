@@ -6,6 +6,18 @@ RAGMind combines a teachable AI agent with a full-stack web interface. It rememb
 
 ---
 
+## Screenshots
+
+| Chat | Documents |
+|------|-----------|
+| ![Chat](docs/screenshots/chat.png) | ![Documents](docs/screenshots/documents.png) |
+
+| Memory | Settings |
+|--------|----------|
+| ![Memory](docs/screenshots/memory.png) | ![Settings](docs/screenshots/settings.png) |
+
+---
+
 ## Features
 
 - **Persistent Memory** — Automatically extracts and stores key facts from conversations using semantic embeddings. The agent recalls relevant memories in future sessions.
